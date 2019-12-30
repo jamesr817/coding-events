@@ -26,14 +26,15 @@ public class EventController {
 
     //Lives at /events/create
     @GetMapping("create")
-    public String renderCreateEventForm() {
+    public String renderCreateEventForm(Model model) {
+        model.addAttribute("title", "Create Event");
         return "events/create";
     }
 
     //Lives at /events/create
     @PostMapping("create")
-    public String createEvent(@RequestParam String eventName) {
-        events.add(new Event(eventName));
+    public String processCreateEventForm(@RequestParam String eventName, @RequestParam String eventDescription) {
+        events.add(new Event(eventName, eventDescription));
         return "redirect:";
 
     }
