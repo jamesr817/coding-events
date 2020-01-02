@@ -25,9 +25,16 @@ public class EventController {
     }
 
     //Lives at /events/create
+//    @GetMapping("create")
+//    public String renderCreateEventForm(Model model) {
+//        model.addAttribute("title", "Create Event");
+//        return "events/create";
+//    }
+    //To help with easily display error messages we've defined to the user:
     @GetMapping("create")
     public String renderCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
+        model.addAttribute(new Event());
         return "events/create";
     }
 
@@ -48,7 +55,8 @@ public class EventController {
     public String processCreateEventForm(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
         if (errors.hasErrors()) {
             model.addAttribute("title", "Create Event");
-            model.addAttribute("errorMsg","Bad Data");//Use this just for now.
+            //Below line is no longer need with changes made to Event.java model class and refactored HTML with th:field
+            //model.addAttribute("errorMsg","Bad Data");//Use this just for now.
             return "events/create";
         }
         EventData.add(newEvent);

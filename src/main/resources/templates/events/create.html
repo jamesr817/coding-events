@@ -5,17 +5,25 @@
 <body class="container">
 
     <header th:replace="fragments :: header"></header>
-
-    <p th:text="${errorMsg}" style="color:red"></p>
+    <!-- With the new <p> below the third refactored versions of each input with "th:field" this is no longer needed -->
+    <!--<p th:text="${errorMsg}" style="color:red"></p>-->
 
     <form method="post" action="/events/create">
         <div class="form-group">
             <label>Name
-<!--            <input type="text" name = "eventName" class="form-control">-->
+                <!--<input type="text" name = "eventName" class="form-control">-->
 
                 <!--Refactoring the above to match refactored code in EventController.create for model-binding-->
-                <input type="text" name = "name" class="form-control">
+                <!--<input type="text" name = "name" class="form-control">-->
+
+                <!--Further refactoring to properly display message when data is missing or not correct format-->
+                <input th:field="${event.name}" class="form-control">
+                <!-- Think about what we did in JavaScript and Angular. What we did above and for below was simply
+                pointed to the declare/defined fields and told told Thymeleaf to correspond to each field in the
+                Event.java model class. -->
             </label>
+            <p class="error" th:errors="${event.name}"></p>
+            <!--Translates to: "Insert any error messages associated with this field into this <p> tag  -->
         </div>
 
         <div class="form-group">
@@ -23,15 +31,20 @@
                 <!--<input type="text" name = "eventDescription" class="form-control">-->
 
                 <!--Refactoring the above to match refactored code in EventController.create for model-binding-->
-                <input type="text" name = "description" class="form-control">
+                <!--<input type="text" name = "description" class="form-control">-->
+                <input th:field="${event.description}" class="form-control">
+                <p class="error" th:errors="${event.description}"></p>
             </label>
         </div>
 
         <div class="form-group">
             <label>Contact Email
-                <input type="text" name = "contactEmail" class="form-control">
+                <!--<input type="text" name = "${event.contactEmail}" class="form-control">-->
+                <input th:field="${event.contactEmail}" class="form-control">
+                <p class="error" th:errors="${event.contactEmail}"></p>
             </label>
         </div>
+
         <div class="form-group">
             <input type="submit" value="Create Event" class="btn btn-success">
         </div>

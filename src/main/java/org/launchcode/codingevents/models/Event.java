@@ -33,6 +33,9 @@ public class Event {
         nextId++;
     }
 
+    //Creating a new "No Argument" constructor to help us display appropriate msg to user when missing data
+    public Event() {}
+
     public String getName() {
         return name;
     }
