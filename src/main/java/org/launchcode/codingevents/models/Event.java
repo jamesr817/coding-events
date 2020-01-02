@@ -1,5 +1,9 @@
 package org.launchcode.codingevents.models;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 public class Event {
@@ -7,12 +11,23 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
+    //Adding validation to our app
+    @Size(min = 3, max = 50, message = "Name must be between 3-50 characters.")//Validation for name
+    @NotBlank(message = "Name required")
+    @NotNull(message = "Cannot be null, Try again")
     private String name;
+
+    @Size(max = 600, message = "Description too long, cannot exceed 600 characters.(Spaces included)")
     private String description;
 
-    public Event(String name, String description) {
+    @Email(message = "Invalid email, Try again.")
+    private String contactEmail;
+    //With model-binding we do not have to add new code to our "EventController" class for our create controller.
+
+    public Event(String name, String description, String contactEmail) {
         this.name = name;
         this.description = description;
+        this.contactEmail = contactEmail;
         this.id = nextId;
         nextId++;
     }
@@ -31,6 +46,14 @@ public class Event {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getContactEmail() {
+        return contactEmail;
+    }
+
+    public void setContactEmail(String contactEmail) {
+        this.contactEmail = contactEmail;
     }
 
     public int getId() {
