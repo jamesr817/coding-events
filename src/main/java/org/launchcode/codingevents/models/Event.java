@@ -32,7 +32,8 @@ public class Event {
         this.id = nextId;
         nextId++;
     }
-
+//TODO Question: Why do we need this empty constructor for accomplishing the task of error validation?
+//TODO Question: How do we know to use empty constructors like below for what we accomplished?
     //Creating a new "No Argument" constructor to help us display appropriate msg to user when missing data
     public Event() {}
 
