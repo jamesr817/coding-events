@@ -11,8 +11,8 @@ public class Event {
     private int id;
     private static int nextId = 1;
 
-    //Adding validation to our app
-    @Size(min = 3, max = 50, message = "Name must be between 3-50 characters.")//Validation for name
+
+    @Size(min = 3, max = 50, message = "Name must be between 3-50 characters.")
     @NotBlank(message = "Name required")
     @NotNull(message = "Cannot be null, Try again")
     private String name;
@@ -23,19 +23,23 @@ public class Event {
     @NotBlank
     @Email(message = "Invalid email, Try again.")
     private String contactEmail;
-    //With model-binding we do not have to add new code to our "EventController" class for our create controller.
 
-    public Event(String name, String description, String contactEmail) {
+    //Adding our new enums class of Event types to our app
+    private EventType type;
+
+    public Event(String name, String description, String contactEmail, EventType type) {
+        this();//Is the same as calling a different constructor from within the same class, which is Event()
+        //Calling a constructor in a constructor should always be done first as we did here with "this()"
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
+        this.type= type;//Adding EventType to constructor
+    }
+
+    public Event() {
         this.id = nextId;
         nextId++;
     }
-//TODO Question: Why do we need this empty constructor for accomplishing the task of error validation?
-//TODO Question: How do we know to use empty constructors like below for what we accomplished?
-    //Creating a new "No Argument" constructor to help us display appropriate msg to user when missing data
-    public Event() {}
 
     public String getName() {
         return name;
@@ -59,6 +63,15 @@ public class Event {
 
     public void setContactEmail(String contactEmail) {
         this.contactEmail = contactEmail;
+    }
+
+    //Adding getter and setters for EventType
+    public EventType getType() {
+        return type;
+    }
+
+    public void setType(EventType type) {
+        this.type = type;
     }
 
     public int getId() {
