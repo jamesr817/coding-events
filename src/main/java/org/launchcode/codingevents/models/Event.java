@@ -20,6 +20,7 @@ public class Event {
     @Size(max = 600, message = "Description too long, cannot exceed 600 characters.(Spaces included)")
     private String description;
 
+    @NotBlank
     @Email(message = "Invalid email, Try again.")
     private String contactEmail;
     //With model-binding we do not have to add new code to our "EventController" class for our create controller.
