@@ -24,16 +24,14 @@ public class Event {
     @Email(message = "Invalid email, Try again.")
     private String contactEmail;
 
-    //Adding our new enums class of Event types to our app
     private EventType type;
 
     public Event(String name, String description, String contactEmail, EventType type) {
-        this();//Is the same as calling a different constructor from within the same class, which is Event()
-        //Calling a constructor in a constructor should always be done first as we did here with "this()"
+        this();
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.type= type;//Adding EventType to constructor
+        this.type= type;
     }
 
     public Event() {

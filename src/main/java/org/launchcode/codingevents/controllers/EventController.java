@@ -30,7 +30,6 @@ public class EventController {
     public String renderCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
         model.addAttribute(new Event());
-        //Adding an EventType attribute to our model. This returns an Array of the different event types
         model.addAttribute("types",EventType.values());
         return "events/create";
     }
@@ -46,7 +45,6 @@ public class EventController {
         return "redirect:";
     }
 
-    //A handler method to display the form we'll be using to delete items
     @GetMapping("delete")
     public String displayDeleteForm(Model model) {
         model.addAttribute("title","Delete Events");
@@ -55,7 +53,6 @@ public class EventController {
 
     }
 
-    //Implementing a POST handler for deleting events form
     @PostMapping("delete")
     public String processDeleteEventsForm(@RequestParam(required = false) int[] eventIds) {
         if (eventIds != null) {
