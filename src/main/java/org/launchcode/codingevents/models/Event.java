@@ -11,12 +11,13 @@ import java.util.Objects;
 
 //Indicating that this Class/model is a persistent object. @Entity annotation
 @Entity
-public class Event {
+public class Event extends AbstractEntity {
 
     //Indicating id as a primary key
-    @Id
-    @GeneratedValue
-    private int id;
+    //id field is no longer needed in this model, now that it extends the AbstractEntity model class
+    //@Id
+    //@GeneratedValue
+    //private int id;
 
     //The field below is no longer needed.
    //private static int nextId = 1;
@@ -87,26 +88,28 @@ public class Event {
         this.type = type;
     }
 
-    public int getId() {
-        return id;
-    }
+    //field is no longer needed in this model, now that it extends the AbstractEntity model class
+    //public int getId() {
+    //    return id;
+    //}
 
     @Override
     public String toString() {
         return name;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Event event = (Event) o;
-        return id == event.id;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
+//field is no longer needed in this model, now that it extends the AbstractEntity model class
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Event event = (Event) o;
+//        return id == event.id;
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(id);
+//    }
 }
 
