@@ -1,19 +1,12 @@
 package org.launchcode.codingevents.models;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Objects;
 
 @Entity
 public class EventCategory extends AbstractEntity {
-    //id field is no longer needed in this model, now that it extends the AbstractEntity model class
-    //@Id
-    //@GeneratedValue
-    //private int id;
 
     @Size(min = 3, message = "Category name must be between 3-50 characters.")
     @NotBlank(message = "Name for new category is required. Please try again.")
@@ -34,30 +27,9 @@ public class EventCategory extends AbstractEntity {
         this.name = name;
     }
 
-    //public int getId() {
-    //    return id;
-    //}
-
-    //TODO: Should there be custom @Override methods like the ones in the Event model class? Why or why not?
-    //The answer is yes
-
-
     @Override
     public String toString() {
         return name;
     }
 
-    //id field is no longer needed in this model, now that it extends the AbstractEntity model class
-//    @Override
-//    public boolean equals(Object o) {
-//        if (this == o) return true;
-//        if (o == null || getClass() != o.getClass()) return false;
-//        EventCategory that = (EventCategory) o;
-//        return id == that.id;
-//    }
-//
-//    @Override
-//    public int hashCode() {
-//        return Objects.hash(id);
-//    }
 }

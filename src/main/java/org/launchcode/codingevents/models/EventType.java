@@ -6,7 +6,6 @@ public enum EventType {
     SOCIAL("Social"),
     WORKSHOP("Workshop");
 
-    //Our constructor
     private final String displayName;
 
     EventType(String displayName) {

@@ -17,12 +17,8 @@ import javax.validation.Valid;
 @RequestMapping("events")
 public class EventController {
 
-    //Simply put, this says that the below field will be automatically wired up with an object
     @Autowired
     private EventRepository eventRepository;
-
-    //Methods of the CrudRepository Interface that we'l be using: findAll, save, findById
-    //We need to replace "EventData" anywhere we see it with "eventsRepository"
 
     @GetMapping
     public String displayAllEvents(Model model) {
@@ -31,7 +27,6 @@ public class EventController {
         return "events/index";
     }
 
-    //Lives at /events/create
     @GetMapping("create")
     public String renderCreateEventForm(Model model) {
         model.addAttribute("title", "Create Event");
@@ -40,7 +35,6 @@ public class EventController {
         return "events/create";
     }
 
-    //Lives at /events/create
     @PostMapping("create")
     public String processCreateEventForm(@ModelAttribute @Valid Event newEvent, Errors errors, Model model) {
         if (errors.hasErrors()) {
