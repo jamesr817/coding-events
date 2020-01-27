@@ -12,7 +12,12 @@
         </tr>
         </thead>
         <tr th:each="category : ${categories}">
-            <td th:text="${category.name}"></td>
+            <!--This th:text line below will be replaced with a link to allow the user to click on a category to view
+            all of it's events -->
+            <!--<td th:text="${category.name}"></td>-->
+            <!--Below we use concatenation in the href to allow us to click on a category name which will link it to its
+              assigned id. The "=" after '/events?categoryId= ' will place the specified id # behind it.  -->
+            <td><a th:text="${category.name}" th:href="'/events?categoryId=' + ${category.id}"></a></td>
         </tr>
     </table>
 
