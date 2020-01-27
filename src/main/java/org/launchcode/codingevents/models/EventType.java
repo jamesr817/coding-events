@@ -1,6 +1,9 @@
-package org.launchcode.codingevents.models;
+//package org.launchcode.codingevents.models;
 
-public enum EventType {
+/*Now that this class is no longer being used we'll do the same as we did before and remove all references within our
+code anywhere there is reference to this enums class. Only keeping this for a reference of enum classes
+ */
+/*public enum EventType {
     CONFERENCE("Conference"),
     MEETUP("MeetUp"),
     SOCIAL("Social"),
@@ -17,3 +20,4 @@ public enum EventType {
         return displayName;
     }
 }
+*/

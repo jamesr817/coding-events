@@ -1,6 +1,7 @@
 package org.launchcode.codingevents.models;
 
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -21,13 +22,32 @@ public class Event extends AbstractEntity {
     @Email(message = "Invalid email, Try again.")
     private String contactEmail;
 
-    private EventType type;
+    /*Since we've created the EventCategory object, which does the same as our EventType enums, we will no longer need
+    the EventType enums class. Enums are very useful, however for this scenario, the EventCategory object offers a
+     much more dynamic way to categorize events for the user since it allows the user to create their own categories*/
 
-    public Event(String name, String description, String contactEmail, EventType type) {
+    //private EventType type;
+
+    //We'll replace the line 28 with this:
+    @ManyToOne
+    @NotNull(message = "Category is required.")
+    private EventCategory eventCategory;
+    //Next change out everything in this class for EventType with EventCategory equivalents.
+
+    /*With us adding EventCategory, our goal is to setup a many-to-one relationship in our database.
+    Now in any case an Event can fall into multiple categories, but for this web app we'll have it to where an event can
+    only fall into one category. This is where the @ManyToOne annotation comes from above the EventCategory field above.
+     This is a part of the process to how we establish our Primary to foreign keys relationship within our database.*/
+
+    /*We took out EventType eventType for the parameters of our Event constructor and replaced with it with
+    EventCategory eventCategory. Then replaced the eventType getter and setter with eventCategory getter and setter.
+     */
+    public Event(String name, String description, String contactEmail, EventCategory eventCategory) {
         this.name = name;
         this.description = description;
         this.contactEmail = contactEmail;
-        this.type= type;
+        //this.eventType = eventType;
+        this.eventCategory= eventCategory;
     }
 
     public Event() {}
@@ -56,12 +76,23 @@ public class Event extends AbstractEntity {
         this.contactEmail = contactEmail;
     }
 
-    public EventType getType() {
-        return type;
+    //*No longer using
+    //public EventType getType() {
+    //    return type;
+    //}
+
+    //*No longer using
+    //public void setType(EventType type) {
+    //    this.type = type;
+    //}
+
+
+    public EventCategory getEventCategory() {
+        return eventCategory;
     }
 
-    public void setType(EventType type) {
-        this.type = type;
+    public void setEventCategory(EventCategory eventCategory) {
+        this.eventCategory = eventCategory;
     }
 
     @Override
